@@ -23,7 +23,6 @@ const server = app.listen(APP_PORT, function () {
 });
 
 // Set up the Plaid client
-/*
 const plaidConfig = new Configuration({
   basePath: PlaidEnvironments[process.env.PLAID_ENV],
   baseOptions: {
@@ -36,7 +35,6 @@ const plaidConfig = new Configuration({
 });
 
 const plaidClient = new PlaidApi(plaidConfig);
-*/
 
 /**
  * Fetches some info about our user from our "database" and returns it to

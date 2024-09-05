@@ -31,7 +31,7 @@ class PlaidLinkViewController: UIViewController {
     
     
     private func fetchLinkToken() {
-        // Fetch a link token from our server
+        self.communicator.call
 
     }
     
