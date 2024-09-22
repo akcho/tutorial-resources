@@ -23,7 +23,6 @@ const server = app.listen(APP_PORT, function () {
 });
 
 // Set up the Plaid client
-/*
 const plaidConfig = new Configuration({
   basePath: PlaidEnvironments[process.env.PLAID_ENV],
   baseOptions: {
@@ -36,7 +35,6 @@ const plaidConfig = new Configuration({
 });
 
 const plaidClient = new PlaidApi(plaidConfig);
-*/
 
 /**
  * Fetches some info about our user from our "database" and returns it to
@@ -60,16 +58,14 @@ app.get("/server/get_user_info", async (req, res, next) => {
  */
 app.post("/server/generate_link_token", async (req, res, next) => {
   try {
-    /*
     // Part 1
-
     const currentUser = await getUserRecord();
     const userId = currentUser[FIELD_USER_ID];
     const createTokenResponse = await plaidClient.linkTokenCreate({
       user: {
         client_user_id: userId,
       },
-      client_name: "iOS Demo",
+      client_name: "iOS Video Demo",
       country_codes: ["US"],
       language: "en",
       products: ["auth"],
@@ -77,13 +73,8 @@ app.post("/server/generate_link_token", async (req, res, next) => {
     });
     const data = createTokenResponse.data;
     console.log("createTokenResponse", data);
-    */
 
-    /*
     res.json({ expiration: data.expiration, linkToken: data.link_token });
-    return;
-   */
-    res.json({ todo: "This endpoint has not yet been implemented" });
   } catch (error) {
     console.log(
       "Running into an error! Note that if you have an error when creating a " +
@@ -101,7 +92,6 @@ app.post("/server/generate_link_token", async (req, res, next) => {
  */
 app.post("/server/swap_public_token", async (req, res, next) => {
   try {
-    /*
     // Part 1
 
     const result = await plaidClient.itemPublicTokenExchange({
@@ -109,9 +99,7 @@ app.post("/server/swap_public_token", async (req, res, next) => {
     });
     const data = result.data;
     console.log("publicTokenExchange data", data);
-    */
 
-    /*
     const updateData = {};
     updateData[FIELD_ACCESS_TOKEN] = data.access_token;
     updateData[FIELD_ITEM_ID] = data.item_id;
@@ -119,10 +107,6 @@ app.post("/server/swap_public_token", async (req, res, next) => {
     await updateUserRecord(updateData);
     console.log("publicTokenExchange data", data);
     res.json({ success: true });
-    return;
-    */
-
-    res.json({ todo: "This endpoint has not yet been implemented" });
   } catch (error) {
     next(error);
   }
@@ -133,7 +117,6 @@ app.post("/server/swap_public_token", async (req, res, next) => {
  */
 app.get("/server/simple_auth", async (req, res, next) => {
   try {
-    /*
     // Part 1
 
     const currentUser = await getUserRecord();
@@ -143,22 +126,19 @@ app.get("/server/simple_auth", async (req, res, next) => {
     });
 
     console.dir(authResponse.data, { depth: null });
-    */
 
-    /*
     const accountMask = authResponse.data.accounts[0].mask;
     const accountName = authResponse.data.accounts[0].name;
     const accountId = authResponse.data.accounts[0].account_id;
 
     // Since I don't know if these arrays are in the same order, make sure we're
     // fetching the right one by account_id
-    
+
     const routingNumber = authResponse.data.numbers.ach.find(
       (e) => e.account_id === accountId
     ).routing;
     res.json({ routingNumber, accountMask, accountName });
     return;
-    */
 
     res.json({ todo: "This endpoint has not yet been implemented" });
   } catch (error) {
